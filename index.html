@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pulseboard Social Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="sidebar">
+        <div>
+          <p class="eyebrow">Studio</p>
+          <h1>Pulseboard</h1>
+          <p class="sidebar-copy">
+            Track momentum, audience behavior, and what deserves the next slot in
+            your content calendar.
+          </p>
+        </div>
+
+        <nav class="nav-pills" aria-label="Sections">
+          <button class="nav-pill active" data-target="overview">Overview</button>
+          <button class="nav-pill" data-target="growth">Growth</button>
+          <button class="nav-pill" data-target="scheduler">Scheduler</button>
+          <button class="nav-pill" data-target="content">Content</button>
+        </nav>
+
+        <div class="sidebar-panel">
+          <span class="panel-label">Theme</span>
+          <button id="themeToggle" class="theme-toggle" aria-pressed="false">
+            <span class="toggle-orb"></span>
+            <span class="toggle-text">Switch to Night Shift</span>
+          </button>
+        </div>
+
+        <div class="sidebar-panel ambient-card">
+          <span class="panel-label">Forecast</span>
+          <strong id="forecastTitle">Momentum rising</strong>
+          <p id="forecastCopy">
+            Reels performance is lifting reach. Protect Thursday evening slots.
+          </p>
+        </div>
+      </aside>
+
+      <main class="dashboard">
+        <header class="hero-card panel" id="overview">
+          <div>
+            <p class="eyebrow">Engagement Command Center</p>
+            <h2>Audience energy is up 18% this week.</h2>
+            <p class="hero-copy">
+              Higher saves and shares are outweighing a slight dip in comments.
+              Use the controls to compare channels and update the content queue.
+            </p>
+          </div>
+
+          <div class="hero-controls">
+            <label class="select-wrap">
+              <span>Channel focus</span>
+              <select id="platformSelect">
+                <option value="all">All channels</option>
+                <option value="instagram">Instagram</option>
+                <option value="tiktok">TikTok</option>
+                <option value="youtube">YouTube</option>
+              </select>
+            </label>
+            <div class="score-chip">
+              <span>Live score</span>
+              <strong id="liveScore">84</strong>
+            </div>
+          </div>
+        </header>
+
+        <section class="stats-grid">
+          <article class="metric-card panel">
+            <div class="metric-head">
+              <span>Engagement Rate</span>
+              <span class="metric-shift up" id="engagementShift">+2.4%</span>
+            </div>
+            <strong class="metric-value" id="engagementValue">7.8%</strong>
+            <div class="mini-bars" id="engagementBars" aria-hidden="true"></div>
+          </article>
+
+          <article class="metric-card panel">
+            <div class="metric-head">
+              <span>Follower Growth</span>
+              <span class="metric-shift up" id="growthShift">+412</span>
+            </div>
+            <strong class="metric-value" id="growthValue">12.4k</strong>
+            <canvas id="followersCanvas" width="320" height="92"></canvas>
+          </article>
+
+          <article class="metric-card panel insights-card">
+            <div class="metric-head">
+              <span>Follower Insights</span>
+              <span class="metric-shift neutral" id="audienceLabel">Core audience</span>
+            </div>
+            <div class="insight-tabs" role="tablist" aria-label="Audience segments">
+              <button class="insight-tab active" data-segment="age">Age</button>
+              <button class="insight-tab" data-segment="region">Region</button>
+              <button class="insight-tab" data-segment="activity">Active</button>
+            </div>
+            <div id="insightBars" class="insight-bars"></div>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel wide-panel" id="growth">
+            <div class="panel-topline">
+              <div>
+                <p class="eyebrow">Growth Trend</p>
+                <h3>Follower velocity over the last 7 days</h3>
+              </div>
+              <button id="growthMode" class="ghost-button">Compare to previous week</button>
+            </div>
+            <canvas id="growthCanvas" width="780" height="280"></canvas>
+          </article>
+
+          <article class="panel side-panel" id="scheduler">
+            <div class="panel-topline">
+              <div>
+                <p class="eyebrow">Scheduled Posts</p>
+                <h3>Next publishing window</h3>
+              </div>
+              <span id="scheduleCount" class="badge">4 queued</span>
+            </div>
+            <div id="scheduleList" class="schedule-list"></div>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel wide-panel" id="content">
+            <div class="panel-topline">
+              <div>
+                <p class="eyebrow">Top-performing Content</p>
+                <h3>Format strength across your latest posts</h3>
+              </div>
+              <div class="filter-group" role="tablist" aria-label="Content filter">
+                <button class="filter-chip active" data-filter="all">All</button>
+                <button class="filter-chip" data-filter="video">Video</button>
+                <button class="filter-chip" data-filter="carousel">Carousel</button>
+                <button class="filter-chip" data-filter="story">Story</button>
+              </div>
+            </div>
+            <div id="contentList" class="content-list"></div>
+          </article>
+
+          <article class="panel side-panel spotlight-panel">
+            <div class="panel-topline">
+              <div>
+                <p class="eyebrow">Posting Rhythm</p>
+                <h3>Recommended action</h3>
+              </div>
+            </div>
+            <div class="spotlight-ring">
+              <svg viewBox="0 0 120 120" class="ring-chart" aria-hidden="true">
+                <circle cx="60" cy="60" r="46" class="ring-track"></circle>
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="46"
+                  class="ring-progress"
+                  pathLength="100"
+                  id="ringProgress"
+                ></circle>
+              </svg>
+              <div class="ring-copy">
+                <strong id="ringValue">72%</strong>
+                <span>Optimal timing match</span>
+              </div>
+            </div>
+            <div id="actionFeed" class="action-feed"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
