@@ -44,12 +44,12 @@ const dashboardData = {
     },
     actions: [
       {
-        title: "Lean into short-form explainers",
-        copy: "Educational clips are converting passive viewers into followers faster than trend-led posts."
+        title: "Push one short-form explainer into Thursday prime time",
+        copy: "Educational clips are converting passive viewers into followers faster than trend-led posts, especially in the evening window."
       },
       {
-        title: "Keep Friday open for a repost",
-        copy: "Your strongest post type still has room for a same-week remix without audience fatigue."
+        title: "Reserve Friday for a high-performing remix",
+        copy: "Your strongest post type still has room for a same-week cutdown or repost without audience fatigue."
       }
     ]
   },
@@ -98,12 +98,12 @@ const dashboardData = {
     },
     actions: [
       {
-        title: "Double down on save-friendly carousels",
-        copy: "Your best carousel topics are still extending the life of each publishing slot."
+        title: "Schedule another save-focused carousel this week",
+        copy: "Your best carousel topics keep extending reach for 48 hours after posting, so they deserve another slot."
       },
       {
-        title: "Use stories to warm up launches",
-        copy: "Story interactions are soft, but they improve clicks when posted 90 minutes before a reel."
+        title: "Use stories as a 90-minute warm-up",
+        copy: "Story interactions are softer on their own, but they improve reel clicks when they preview the same topic first."
       }
     ]
   },
@@ -152,12 +152,12 @@ const dashboardData = {
     },
     actions: [
       {
-        title: "Shorten the setup",
-        copy: "Your winning clips reach payoff too late. Bring the strongest visual into the first two seconds."
+        title: "Move the payoff into the first two seconds",
+        copy: "Your winning clips are still reaching the hook too late. Lead with the strongest visual before the explanation starts."
       },
       {
-        title: "Test a sequel format",
-        copy: "Comments suggest audience appetite for follow-up parts, especially on product breakdowns."
+        title: "Test a sequel post while comments are active",
+        copy: "Audience replies show clear appetite for follow-up parts, especially when the first video breaks down a specific product or tactic."
       }
     ]
   },
@@ -206,12 +206,12 @@ const dashboardData = {
     },
     actions: [
       {
-        title: "Package the title harder",
-        copy: "Average watch time is good enough to support more ambitious titles and bolder thumbnails."
+        title: "Package the next upload more aggressively",
+        copy: "Average watch time is strong enough to support a clearer promise in the title and a more assertive thumbnail."
       },
       {
-        title: "Cluster related uploads",
-        copy: "Publishing connected topics within 5 days improves returning viewer rate on this channel."
+        title: "Cluster related uploads within five days",
+        copy: "Publishing connected topics closer together improves returning viewer rate on this channel and compounds recommendation traffic."
       }
     ]
   }
@@ -254,28 +254,28 @@ const topContent = [
     type: "carousel",
     score: 92,
     stat: "8.1% saves",
-    accent: "linear-gradient(135deg, rgba(235, 185, 79, 0.55), rgba(219, 98, 56, 0.5))"
+    image: createThumbnail("notebook")
   },
   {
     title: "Hook rewrite in 15 seconds",
     type: "video",
     score: 88,
     stat: "61% completion",
-    accent: "linear-gradient(135deg, rgba(25, 123, 119, 0.55), rgba(52, 200, 178, 0.4))"
+    image: createThumbnail("camera")
   },
   {
     title: "Live launch countdown sequence",
     type: "story",
     score: 76,
     stat: "4.8% taps forward",
-    accent: "linear-gradient(135deg, rgba(219, 98, 56, 0.6), rgba(25, 123, 119, 0.35))"
+    image: createThumbnail("workspace")
   },
   {
     title: "Customer objection teardown",
     type: "video",
     score: 84,
     stat: "7.3% shares",
-    accent: "linear-gradient(135deg, rgba(255, 139, 94, 0.5), rgba(235, 185, 79, 0.35))"
+    image: createThumbnail("monitor")
   }
 ];
 
@@ -356,7 +356,9 @@ function renderContent() {
     const card = document.createElement("article");
     card.className = "content-card";
     card.innerHTML = `
-      <div class="content-thumb" style="background:${item.accent}"></div>
+      <div class="content-thumb">
+        <img src="${item.image}" alt="${item.title}" />
+      </div>
       <div>
         <div class="content-meta">
           <span class="format-pill">${item.type}</span>
@@ -380,6 +382,86 @@ function renderActions() {
     card.innerHTML = `<strong>${item.title}</strong><p>${item.copy}</p>`;
     feed.appendChild(card);
   });
+}
+
+function createThumbnail(kind) {
+  const scenes = {
+    notebook: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f2e6d8"/>
+            <stop offset="100%" stop-color="#d5c1a7"/>
+          </linearGradient>
+        </defs>
+        <rect width="480" height="480" fill="url(#bg)"/>
+        <rect x="60" y="70" width="360" height="340" rx="30" fill="#efe7da"/>
+        <rect x="92" y="100" width="240" height="280" rx="18" fill="#fffaf3"/>
+        <rect x="350" y="118" width="40" height="220" rx="10" fill="#d86b42"/>
+        <rect x="118" y="132" width="132" height="12" rx="6" fill="#d4c6b3"/>
+        <rect x="118" y="164" width="170" height="8" rx="4" fill="#e5d8c8"/>
+        <rect x="118" y="190" width="150" height="8" rx="4" fill="#e5d8c8"/>
+        <rect x="118" y="240" width="180" height="92" rx="14" fill="#1d7a76"/>
+        <circle cx="386" cy="362" r="30" fill="#efb44e"/>
+      </svg>
+    `,
+    camera: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#dce7e4"/>
+            <stop offset="100%" stop-color="#a7bbb7"/>
+          </linearGradient>
+        </defs>
+        <rect width="480" height="480" fill="url(#bg)"/>
+        <rect x="70" y="248" width="340" height="116" rx="28" fill="#2a2d34"/>
+        <rect x="120" y="210" width="108" height="54" rx="16" fill="#3a4048"/>
+        <circle cx="252" cy="306" r="66" fill="#14171c"/>
+        <circle cx="252" cy="306" r="40" fill="#197b77"/>
+        <circle cx="252" cy="306" r="22" fill="#8fd5cb"/>
+        <rect x="322" y="272" width="46" height="18" rx="9" fill="#515862"/>
+        <rect x="66" y="130" width="140" height="20" rx="10" fill="#ffffff" fill-opacity=".58"/>
+      </svg>
+    `,
+    workspace: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f7ead9"/>
+            <stop offset="100%" stop-color="#dcc4aa"/>
+          </linearGradient>
+        </defs>
+        <rect width="480" height="480" fill="url(#bg)"/>
+        <rect x="50" y="285" width="380" height="96" rx="18" fill="#8f5c3b"/>
+        <rect x="104" y="96" width="180" height="130" rx="18" fill="#1d2229"/>
+        <rect x="118" y="112" width="152" height="98" rx="10" fill="#34c8b2"/>
+        <rect x="172" y="226" width="44" height="52" rx="10" fill="#3f4853"/>
+        <rect x="300" y="132" width="78" height="112" rx="20" fill="#e8ddd0"/>
+        <rect x="316" y="150" width="46" height="76" rx="12" fill="#fff9f1"/>
+        <circle cx="358" cy="320" r="32" fill="#db6238"/>
+      </svg>
+    `,
+    monitor: `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#d7e4ea"/>
+            <stop offset="100%" stop-color="#b7c8cf"/>
+          </linearGradient>
+        </defs>
+        <rect width="480" height="480" fill="url(#bg)"/>
+        <rect x="56" y="76" width="368" height="236" rx="26" fill="#20252c"/>
+        <rect x="78" y="96" width="324" height="196" rx="14" fill="#f5f2eb"/>
+        <rect x="106" y="136" width="70" height="112" rx="16" fill="#db6238"/>
+        <rect x="192" y="166" width="86" height="82" rx="16" fill="#197b77"/>
+        <rect x="294" y="122" width="78" height="126" rx="16" fill="#efb44e"/>
+        <rect x="200" y="312" width="80" height="30" rx="10" fill="#424954"/>
+        <rect x="168" y="342" width="144" height="20" rx="10" fill="#59616d"/>
+      </svg>
+    `
+  };
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(scenes[kind])}`;
 }
 
 function drawLineChart(canvas, current, previous = null) {
